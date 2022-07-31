@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Reaction</title>
+    <style>
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            margin: 0;
+        }
+
+        section {
+            display: flex;
+            place-content: center;
+            gap: 40px;
+            box-sizing: border-box;
+            flex: 1 0 33.33vh;
+            min-height: 200px;
+            padding: 40px;
+        }
+
+        .one {background-color: aquamarine;}
+        .two {background-color: plum;}
+        .thr {background-color: antiquewhite;}
+
+        button {
+            background-color: whitesmoke;
+            border: 0;
+            outline: 0;
+            width: auto;
+            padding: 10px 20px;
+            height: fit-content;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        button:first-of-type {
+            z-index: 1;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+        }
+
+        button:last-of-type {
+            z-index: 1;
+            position: fixed;
+            top: 80px;
+            right: 30px;
+        }
+
+        .head {
+            min-width: 140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px;
+            height: 60px;
+            width: 200px;
+            border-radius: 60px;
+            background-color: yellow;
+        }
+
+        .eye {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: orchid;
+        }
+
+        .eye-closed {
+            height: 2px;
+            border-radius: 0;
+            background-color: black;
+        }
+
+        .arm, .leg {
+            min-width: 40px;
+            border-radius: 20px;
+            width: 40px;
+            margin-top: 20px;
+            height: calc(100% - 40px);
+        }
+
+        .body {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: start;
+            background-color: teal;
+            min-width: 140px;
+            border-radius: 20px;
+            width: 140px;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .arm {
+            background-color: greenyellow;
+        }
+
+        .leg {
+            background-color: darkorange;
+        }
+
+        .msg {
+            text-align: center;
+            margin-top: 2px;
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 100%;
+            height: 25px; 
+        }
+
+    </style>
+</head>
+<body>
+    <section class="one">
+        <button id="close-btn">Close Left Eye</button>
+        <button id="speak-button">Click to Speak</button>
+        
+        <div class="head">
+            <div id="eye" class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+        </div>
+    </section>
+    <section class="two">
+        <div class="arm"></div>
+        <div class="body" id="body"></div>
+        <div class="arm"></div>
+    </section>
+    <section class="thr">
+        <div class="leg"></div>
+        <div class="leg"></div>
+    </section>
+</body>
+
+<script>
+    const button = document.getElementById('close-btn');
+    const speak = document.getElementById('speak-button');
+
+    const handleClick = (event) => {
+        const eye = document.getElementById("eye");
+        const btn = document.getElementById("close-btn");
+        eye.classList.toggle("eye-closed");
+        if (eye.classList.contains("eye-closed")) {
+            btn.textContent = "Open Left Eye";
+            console.log("Closed Eye");
+        } else {
+            btn.textContent = "Close Left Eye";
+            console.log("Opened Eye");
+        }
+    }
+
+    const handleAnotherClick = (e) => {
+        let i = document.querySelectorAll("#msg");
+        if (i.length < 5) {
+            const body = document.getElementById("body");
+            const speakDiv = document.createElement("div");
+            i++;
+            speakDiv.textContent = "Hello, There!";
+            speakDiv.className = "msg";
+            speakDiv.id = "msg";
+            // POSSIBLE WITH INLINE STYLES, BUT I DONT CARE
+            body.append(speakDiv);
+            console.log("Element Created");
+        }
+    }
+
+    button.addEventListener('click', handleClick)
+    speak.addEventListener('click', handleAnotherClick)
+</script>
+</html>
