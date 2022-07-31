@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Reaction</title>
+    <style>
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            margin: 0;
+        }
+
+        section {
+            display: flex;
+            place-content: center;
+            gap: 40px;
+            box-sizing: border-box;
+            flex: 1 0 33.33vh;
+            min-height: 200px;
+            padding: 40px;
+        }
+
+        .one {background-color: aquamarine;}
+        .two {background-color: plum;}
+        .thr {background-color: antiquewhite;}
+
+        button {
+            background-color: whitesmoke;
+            border: 0;
+            outline: 0;
+            z-index: 1;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: auto;
+            padding: 10px 20px;
+            height: fit-content;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px;
+            height: 60px;
+            width: 200px;
+            border-radius: 60px;
+            background-color: yellow;
+        }
+
+        .eye {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: orchid;
+        }
+
+        .eye-closed {
+            height: 2px;
+            border-radius: 0;
+            background-color: black;
+        }
+
+        .arm, .leg {
+            border-radius: 20px;
+            width: 40px;
+            margin-top: 20px;
+            height: calc(100% - 40px);
+        }
+
+        .body {
+            border-radius: 20px;
+            width: 140px;
+            height: 100%;
+        }
+
+        .arm {
+            background-color: greenyellow;
+        }
+
+        .body {
+            background-color: teal;
+        }
+
+        .leg {
+            background-color: darkorange;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="one">
+        <button>Close Left Eye</button>
+        
+        <div class="head">
+            <div id="eye" class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+        </div>
+    </section>
+    <section class="two">
+        <div class="arm"></div>
+        <div class="body"></div>
+        <div class="arm"></div>
+    </section>
+    <section class="thr">
+        <div class="leg"></div>
+        <div class="leg"></div>
+    </section>
+</body>
+
+<script>
+    const button = document.querySelector('button');
+
+    const handleClick = (event) => {
+        const eye = document.getElementById("eye");
+        const btn = document.getElementById("btn");
+        eye.classList.toggle("eye-closed");
+        if (eye.classList.contains("eye-closed")) {
+            btn.textContent = "Open Left Eye";
+            console.log("Closed Eye");
+        } else {
+            btn.textContent = "Close Left Eye";
+            console.log("Opened Eye");
+        }
+    }
+
+    button.addEventListener('click', handleClick)
+</script>
+</html>
